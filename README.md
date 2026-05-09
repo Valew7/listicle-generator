@@ -14,6 +14,12 @@ Two pages:
 
 ---
 
+## Live Demo
+
+[▶ View interactive demo](https://app.guideflow.com/player/5pv1ywzcwp)
+
+---
+
 ## Stack
 
 - Python + Flask
@@ -28,7 +34,7 @@ Two pages:
 
 **1. Clone the repo**
 ```bash
-git clone 
+git clone https://github.com/Valew7/listicle-generator.git
 cd listicle-generator
 ```
 
@@ -47,34 +53,42 @@ venv\Scripts\activate
 ```bash
 pip install -r requirements.txt
 ```
-**4. Add your Groq API key**
 
-Create a `.env` file in the root folder and add this line:
-GROQ_API_KEY=your_key_here
+**4. Add your API keys**
 
-> **Windows users**: don't use `echo` to create this file — it may cause encoding errors.
-> Create it manually in VS Code or Notepad instead.
+Create a `.env` file in the root folder:
+GROQ_API_KEY=your_groq_key_here
+FLASK_SECRET_KEY=any-random-string-here
 
-Get a free key at https://console.groq.com
+> **Windows users**: don't use `echo` to create this file — it may cause encoding errors. Create it manually in VS Code or Notepad instead.
+
+Get a free Groq key at https://console.groq.com
+
+**5. Run**
+```bash
+python app.py
+```
 
 Open http://localhost:5000
 
 ---
-## Project Structure
 
-```
+## Project structure
 ├── app.py              # routes and pipeline orchestration
 ├── database.py         # SQLite setup
-├── core/
-│   ├── scraper.py      # pulls images from product URL
-│   ├── generator.py    # calls Groq, returns structured copy
-│   └── assembler.py    # renders the final HTML
+├── generator.py        # calls Groq, returns structured copy
+├── scraper.py          # pulls images from product URL
+├── requirements.txt
+├── .env.example
 ├── templates/
 │   ├── create.html
 │   ├── dashboard.html
 │   └── listicle.html
-└── outputs/            # generated pages land here
-```
+└── static/
+├── css/
+└── js/
+
+---
 
 ## Known limitations
 
