@@ -17,6 +17,11 @@ Two pages:
 
 [📄 View Architecture Document](./Architecture_Document___Listicle_Generator_-_Valentina.pdf)
 
+
+## Walkthrough
+
+[▶ Watch the walkthrough](https://www.loom.com/share/f6e25be629234ccf98526132b5628a4a)
+
 ## Live Demo
 
 [▶ View interactive demo](https://app.guideflow.com/player/5pv1ywzcwp)
