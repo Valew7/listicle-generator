@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Listicle - List-Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <a href="{{ url_for('dashboard') }}" class="back-link">← Back to Dashboard</a>
+            <h1>Create New Listicle</h1>
+        </header>
+
+        <form action="{{ url_for('create') }}" method="POST" enctype="multipart/form-data" class="create-form">
+            <div class="form-group">
+                <label for="product_url">Product URL</label>
+                <input type="url" id="product_url" name="product_url" required placeholder="https://example.com/product">
+            </div>
+
+            <div class="form-group">
+                <label>Research JSON File</label>
+                <div id="drop-zone" class="drop-zone">
+                    <span class="drop-zone__prompt">Drop research.json here or click to upload</span>
+                    <input type="file" name="research_json" id="research_json" class="drop-zone__input" accept=".json" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Generate Listicle</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/create.js') }}"></script>
+</body>
+</html>

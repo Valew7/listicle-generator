@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ content.headline }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Figtree:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/listicle.css">
+</head>
+<body>
+    <div class="announcement-bar">
+        {{ content.announcement_bar }} | <span id="countdown">00:00:00</span>
+    </div>
+
+    <header class="editorial-header">
+        <div class="site-logo">{{ content.blog_name }}</div>
+    </header>
+
+    <main class="content-wrapper">
+        <article class="listicle-article">
+            <h1 class="main-headline">{{ content.headline }}</h1>
+            <p class="sub-headline">{{ content.subheadline }}</p>
+
+            <div class="warning-box">
+                <strong>⚠️ IMPORTANT:</strong> {{ content.warning_box }}
+            </div>
+
+            <div class="author-meta">
+                <span class="author-avatar">{{ content.author.avatar_emoji }}</span>
+                <div class="author-info">
+                    <span class="author-name">{{ content.author.name }} <span class="verified-badge">✓</span></span>
+                    <span class="author-title">{{ content.author.title }}</span>
+                </div>
+            </div>
+
+            <div class="intro-section">
+                {% for para in content.intro_paragraphs %}
+                <p>{{ para }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="comparison-section">
+                <h3>Why it's the top choice for 2024</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="winner-col">{{ content.comparison_table.product_name }}</th>
+                            <th>{{ content.comparison_table.competitor_name }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for feature in content.comparison_table.features %}
+                        <tr>
+                            <td>{{ feature.feature }}</td>
+                            <td class="winner-col">{% if feature.product_has %}✅{% else %}❌{% endif %}</td>
+                            <td>{% if feature.competitor_has %}✅{% else %}❌{% endif %}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="benefits-list">
+                {% for benefit in content.benefits %}
+                <section class="benefit-item {% if loop.index is even %}reverse-layout{% endif %}">
+                    <div class="benefit-media">
+                        {% if '.mp4' in benefit.media_url or '.webm' in benefit.media_url %}
+                        <video src="{{ benefit.media_url }}" autoplay muted loop playsinline></video>
+                        {% else %}
+                        <img src="{{ benefit.media_url }}" alt="{{ benefit.title }}" loading="lazy">
+                        {% endif %}
+                    </div>
+                    <div class="benefit-copy">
+                        <h2 class="benefit-title"><span>{{ benefit.number }}.</span> {{ benefit.title }}</h2>
+                        {% for para in benefit.paragraphs %}
+                        <p>{{ para }}</p>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                {% if loop.index == 5 %}
+                <div class="mid-cta-block">
+                    <h3>{{ content.mid_page_cta.title }}</h3>
+                    <ul class="checklist">
+                        {% for item in content.mid_page_cta.checklist %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="#" class="cta-button pulse">{{ content.mid_page_cta.button_text }}</a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="final-cta-section">
+                <h2>{{ content.final_cta.headline }}</h2>
+                <p>{{ content.final_cta.text }}</p>
+                <a href="#" class="cta-button large">{{ content.final_cta.button_text }}</a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="editorial-footer">
+        <p>&copy; 2024 {{ content.blog_name }}. All rights reserved.</p>
+        <p>Advertorial - For Information Purposes Only</p>
+    </footer>
+
+    <div class="sticky-bottom-bar">
+        <div class="sticky-container">
+            <span class="sticky-text">{{ content.sticky_bar_text }}</span>
+            <a href="#" class="cta-button small">{{ content.final_cta.button_text }}</a>
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer to midnight
+        function updateCountdown() {
+            const now = new Date();
+            const midnight = new Date();
+            midnight.setHours(24, 0, 0, 0);
+            
+            const diff = midnight - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>

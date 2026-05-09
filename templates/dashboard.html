@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - List-Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <h1>List-Test</h1>
+            <a href="{{ url_for('create') }}" class="btn btn-primary">Create New Listicle</a>
+        </header>
+
+        <section class="jobs-section">
+            <h2>Recent Jobs</h2>
+            <div class="table-container">
+                <table id="jobs-table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Created At</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job in jobs %}
+                        <tr>
+                            <td>{{ job.product_name or job.product_url }}</td>
+                            <td>{{ job.created_at }}</td>
+                            <td>
+                                <span class="status-badge status-{{ job.status }}">
+                                    {{ job.status }}
+                                </span>
+                            </td>
+                            <td>
+                                {% if job.status == 'completed' %}
+                                <a href="{{ url_for('preview', filename=job.file_path) }}" target="_blank" class="btn btn-sm btn-outline">Preview</a>
+                                {% elif job.status == 'failed' %}
+                                <span class="error-text" title="{{ job.error_message }}">Error</span>
+                                {% else %}
+                                <span class="loading-spinner"></span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
