@@ -18,6 +18,9 @@ Two pages:
 
 [▶ View interactive demo](https://app.guideflow.com/player/5pv1ywzcwp)
 
+<img width="2400" height="1215" alt="preview" src="https://github.com/user-attachments/assets/b6ae7f0b-ffdc-440e-ada7-4ff6301ab813" />
+
+
 ---
 
 ## Stack
