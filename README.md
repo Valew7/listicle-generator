@@ -47,24 +47,20 @@ venv\Scripts\activate
 ```bash
 pip install -r requirements.txt
 ```
-
 **4. Add your Groq API key**
 
-Create a `.env` file in the root folder:
+Create a `.env` file in the root folder and add this line:
 GROQ_API_KEY=your_key_here
-Get a free key at https://console.groq.com
 
-**5. Run**
-```bash
-python app.py
-```
+> **Windows users**: don't use `echo` to create this file — it may cause encoding errors.
+> Create it manually in VS Code or Notepad instead.
+
+Get a free key at https://console.groq.com
 
 Open http://localhost:5000
 
 ---
-El README se ve así porque el bloque de código de la estructura del proyecto se pegó mal — los saltos de línea del árbol de carpetas se colapsaron en una sola línea.
-Abre el README.md y reemplaza la sección de Project structure con esto:
-markdown## Project structure
+## Project Structure
 
 ```
 ├── app.py              # routes and pipeline orchestration
