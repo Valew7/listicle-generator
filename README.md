@@ -13,6 +13,9 @@ Two pages:
 - **/dashboard** — see all generated listicles and preview them
 
 ---
+## Architecture Document
+
+[📄 View Architecture Document](./Architecture_Document___Listicle_Generator_-_Valentina.pdf)
 
 ## Live Demo
 
