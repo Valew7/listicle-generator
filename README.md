@@ -62,8 +62,11 @@ python app.py
 Open http://localhost:5000
 
 ---
+El README se ve así porque el bloque de código de la estructura del proyecto se pegó mal — los saltos de línea del árbol de carpetas se colapsaron en una sola línea.
+Abre el README.md y reemplaza la sección de Project structure con esto:
+markdown## Project structure
 
-## Project structure
+```
 ├── app.py              # routes and pipeline orchestration
 ├── database.py         # SQLite setup
 ├── core/
@@ -75,8 +78,7 @@ Open http://localhost:5000
 │   ├── dashboard.html
 │   └── listicle.html
 └── outputs/            # generated pages land here
-
----
+```
 
 ## Known limitations
 
